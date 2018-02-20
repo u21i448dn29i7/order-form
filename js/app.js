@@ -3,9 +3,7 @@
 
 Product.allProducts = [];
 Order.orderArray = [];
-var list = [];
 var cart = document.getElementById('products');
-var input = [];
 
 function Product(name, filePath, id) {
   this.name = name;
@@ -59,22 +57,16 @@ function Order(name, filePath,quantity) {
       item.appendChild(document.createTextNode(create.quantity));
       item.appendChild(btn);
       cart.appendChild(item);
-      list.push(create);
     }
-    input = document.getElementsByTagName('button');
   } else {
     alert('Boop no data');
   }
 })();
 
-function removeProduct() {
-  console.log(input);
-  for(var i = 0; i < list.length; i++) {
-    if(input[i].id === list[i].name) {
-      var prodName = document.getElementById(list[i].name);
-      prodName.remove();
-    }
-  }
+function removeProduct(event) {
+  var input = event.currentTarget;
+  var elem = document.getElementById(input.id);
+  elem.remove();
 }
 
 (function initProducts() {

@@ -1,0 +1,35 @@
+@import 'normalize.css';
+
+* {
+    border: 1px grey solid;
+}
+
+body {
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+header {
+    background: grey;
+    height: 100px;
+}
+
+nav {
+    width: 960px;
+    margin: 0px auto;
+}
+
+header img {
+    float: left;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+header ul li {
+    display: inline-block;
+    margin-top: 40px;
+    margin-right: 75px;
+}
+
+main ul li:last-child {
+    margin-right: 0px;
+}

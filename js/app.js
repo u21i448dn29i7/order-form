@@ -1,8 +1,11 @@
 'use strict';
-debugger;
+// debugger;
 
 Product.allProducts = [];
 Order.orderArray = [];
+var list = [];
+var cart = document.getElementById('products');
+var input = [];
 
 function Product(name, filePath, id) {
   this.name = name;
@@ -16,10 +19,8 @@ function Order(name, filePath,quantity) {
   this.name = name;
   this.filePath = filePath;
   this.quantity = quantity;
-  Order.orderArray.push(this);  
+  Order.orderArray.push(this);
 }
-
-
 
 
 // add add to cart listener to get product and qty
@@ -37,6 +38,44 @@ function Order(name, filePath,quantity) {
   var strOrder = JSON.stringify(Order.orderArray);
   localStorage.setItem('order', strOrder);
 })();
+
+(function cartForm(){
+  if(localStorage.order) {
+    var getData = localStorage.getItem('order');
+    var blob = JSON.parse(getData);
+    for(var info of blob) {
+      console.log(info);
+      var create = new Order(info.name, info.filePath, info.quantity);
+      var item = document.createElement('li');
+      item.setAttribute('id',create.name);
+      var itemPic = document.createElement('img');
+      itemPic.setAttribute('src', create.filePath);
+      var btn = document.createElement('button');
+      btn.setAttribute('id',create.name);
+      btn.textContent = 'Remove Item';
+      btn.addEventListener('click',removeProduct);
+      item.appendChild(itemPic);
+      item.appendChild(document.createTextNode(create.name));
+      item.appendChild(document.createTextNode(create.quantity));
+      item.appendChild(btn);
+      cart.appendChild(item);
+      list.push(create);
+    }
+    input = document.getElementsByTagName('button');
+  } else {
+    alert('Boop no data');
+  }
+})();
+
+function removeProduct() {
+  console.log(input);
+  for(var i = 0; i < list.length; i++) {
+    if(input[i].id === list[i].name) {
+      var prodName = document.getElementById(list[i].name);
+      prodName.remove();
+    }
+  }
+}
 
 (function initProducts() {
   if (localStorage.allProducts) {

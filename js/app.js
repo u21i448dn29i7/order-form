@@ -50,11 +50,9 @@ function Order(name, filePath,quantity) {
       itemPic.setAttribute('src', create.filePath);
       var btn = document.createElement('button');
       btn.setAttribute('id',create.name);
-      btn.textContent = 'Remove Item';
+      btn.textContent = 'Remove ' + create.quantity + ' ' + create.name+'(s)';
       btn.addEventListener('click',removeProduct);
       item.appendChild(itemPic);
-      item.appendChild(document.createTextNode(create.name));
-      item.appendChild(document.createTextNode(create.quantity));
       item.appendChild(btn);
       cart.appendChild(item);
     }

@@ -1,5 +1,5 @@
 'use strict';
-debugger;
+// debugger;
 
 Product.allProducts = [];
 Order.orderArray = [];
@@ -16,7 +16,7 @@ function Order(name, filePath, quantity) {
   this.name = name;
   this.filePath = filePath;
   this.quantity = quantity;
-  Order.orderArray.push(this);  
+  Order.orderArray.push(this);
 }
 
 
@@ -49,32 +49,31 @@ function loadCatalog() {
 //   var strOrder = JSON.stringify(Order.orderArray);
 //   localStorage.setItem('order', strOrder);
 // })();
-
 (function initProducts() {
-    new Product('Bag', 'img/bag.jpg', 'bag');
-    new Product('Banana', 'img/banana.jpg', 'banana');
-    new Product('Bathroom', 'img/bathroom.jpg', 'bathroom');
-    new Product('Boots', 'img/boots.jpg', 'boots');
-    new Product('Breakfast', 'img/breakfast.jpg', 'breakfast');
-    new Product('Bubblegum', 'img/bubblegum.jpg', 'bubblegum');
-    new Product('Chair', 'img/chair.jpg', 'chair');
-    new Product('Cthulhu', 'img/cthulhu.jpg', 'cthulhu');
-    new Product('Dog-duck', 'img/dog-duck.jpg', 'dog-duck');
-    new Product('Dragon', 'img/dragon.jpg', 'dragon');
-    new Product('Pen', 'img/pen.jpg', 'pen');
-    new Product('Pet-sweep', 'img/pet-sweep.jpg', 'pet-sweep');
-    new Product('Tauntaun', 'img/tauntaun.jpg', 'tauntaun');
-    new Product('Unicorn', 'img/unicorn.jpg', 'unicorn');
-    new Product('Usb', 'img/usb.gif', 'usb');
-    new Product('Water-can', 'img/water-can.jpg', 'water-can');
-    new Product('Wine-glass', 'img/wine-glass.jpg', 'wine-glass');
- 
- 
-    loadCatalog();
+  new Product('Bag', 'img/bag.jpg', 'bag');
+  new Product('Banana', 'img/banana.jpg', 'banana');
+  new Product('Bathroom', 'img/bathroom.jpg', 'bathroom');
+  new Product('Boots', 'img/boots.jpg', 'boots');
+  new Product('Breakfast', 'img/breakfast.jpg', 'breakfast');
+  new Product('Bubblegum', 'img/bubblegum.jpg', 'bubblegum');
+  new Product('Chair', 'img/chair.jpg', 'chair');
+  new Product('Cthulhu', 'img/cthulhu.jpg', 'cthulhu');
+  new Product('Dog-duck', 'img/dog-duck.jpg', 'dog-duck');
+  new Product('Dragon', 'img/dragon.jpg', 'dragon');
+  new Product('Pen', 'img/pen.jpg', 'pen');
+  new Product('Pet-sweep', 'img/pet-sweep.jpg', 'pet-sweep');
+  new Product('Tauntaun', 'img/tauntaun.jpg', 'tauntaun');
+  new Product('Unicorn', 'img/unicorn.jpg', 'unicorn');
+  new Product('Usb', 'img/usb.gif', 'usb');
+  new Product('Water-can', 'img/water-can.jpg', 'water-can');
+  new Product('Wine-glass', 'img/wine-glass.jpg', 'wine-glass');
 
-    if (localStorage.order) {
-      localStorage.clear();
-    }
+
+  loadCatalog();
+
+  if (localStorage.order) {
+    localStorage.clear();
+  }
 
 })();
 
@@ -82,7 +81,7 @@ function loadCatalog() {
 
 var addToCart = document.getElementById('addToCart');
 addToCart.addEventListener('click', function(){
-  
+
   var catalog = document.getElementById('catalog');
   var selectedProduct = catalog.options[catalog.selectedIndex].value;
 
@@ -100,7 +99,7 @@ addToCart.addEventListener('click', function(){
   alert(selectedQuantity + ' units if ' + selectedProduct + ' added to cart. \n Thank you! Buy more!!');
 
   // clear the quantity
-  document.getElementById('quantity').value = '';   
+  document.getElementById('quantity').value = '';
 
 });
 
@@ -108,6 +107,6 @@ document.getElementById('goToCart').addEventListener('click', function(){
   var strOrder = JSON.stringify(Order.orderArray);
   localStorage.setItem('order', strOrder);
 
-  location = 'cart.html'; 
+  location = 'cart.html';
 });
 

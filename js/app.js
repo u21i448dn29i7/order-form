@@ -12,7 +12,7 @@ function Product(name, filePath, id) {
   Product.allProducts.push(this);
 }
 
-function Order(name, filePath,quantity) {
+function Order(name, filePath, quantity) {
   this.name = name;
   this.filePath = filePath;
   this.quantity = quantity;
@@ -20,6 +20,18 @@ function Order(name, filePath,quantity) {
 }
 
 
+function loadCatalog() {
+
+  var catalogElement = document.getElementById('catalog');
+
+  for (let i = 0; i < Product.allProducts.length; i++ ) {
+    var optionElement = document.createElement('option');
+    var optionDropdownText = Product.allProducts[i].name;
+    optionElement.value = Product.allProducts[i].name;
+    optionElement.appendChild(document.createTextNode(optionDropdownText));
+    catalogElement.appendChild(optionElement);
+  }
+}
 
 
 // add add to cart listener to get product and qty
@@ -28,22 +40,17 @@ function Order(name, filePath,quantity) {
 //fake this into "order" in localstorage
 
 
-(function fakeOrder() {
-  new Order('Bag', 'img/bag.jpg', 3);
-  new Order('Banana', 'img/banana.jpg', 1);
-  new Order('Bathroom', 'img/bathroom.jpg', 1);
-  new Order('Boots', 'img/boots.jpg', 45);
+// (function fakeOrder() {
+//   new Order('Bag', 'img/bag.jpg', 3);
+//   new Order('Banana', 'img/banana.jpg', 1);
+//   new Order('Bathroom', 'img/bathroom.jpg', 1);
+//   new Order('Boots', 'img/boots.jpg', 45);
 
-  var strOrder = JSON.stringify(Order.orderArray);
-  localStorage.setItem('order', strOrder);
-})();
+//   var strOrder = JSON.stringify(Order.orderArray);
+//   localStorage.setItem('order', strOrder);
+// })();
 
 (function initProducts() {
-  if (localStorage.allProducts) {
-    var strAllProducts = localStorage.getItem('allProducts');
-    Product.allProducts = JSON.parse(strAllProducts);
-    console.log(Product.allProducts);
-  } else {
     new Product('Bag', 'img/bag.jpg', 'bag');
     new Product('Banana', 'img/banana.jpg', 'banana');
     new Product('Bathroom', 'img/bathroom.jpg', 'bathroom');
@@ -61,14 +68,46 @@ function Order(name, filePath,quantity) {
     new Product('Usb', 'img/usb.gif', 'usb');
     new Product('Water-can', 'img/water-can.jpg', 'water-can');
     new Product('Wine-glass', 'img/wine-glass.jpg', 'wine-glass');
+ 
+ 
+    loadCatalog();
 
-    // var strAllProducts = JSON.stringify(Product.allProducts);
-    // localStorage.setItem('allProducts', strAllProducts);
+    if (localStorage.order) {
+      localStorage.clear();
+    }
 
-  }
 })();
 
 
 
+var addToCart = document.getElementById('addToCart');
+addToCart.addEventListener('click', function(){
+  
+  var catalog = document.getElementById('catalog');
+  var selectedProduct = catalog.options[catalog.selectedIndex].value;
 
+  var selectedQuantity = document.getElementById('quantity').value;
+
+  // get the image reference from Product.allProducts
+  for (let i = 0; i < Product.allProducts.length; i++ ) {
+    if (Product.allProducts[i].name === selectedProduct) {
+      var imageReference = Product.allProducts[i].filePath;
+    }
+  }
+
+  new Order(selectedProduct, imageReference, selectedQuantity);
+
+  alert(selectedQuantity + ' units if ' + selectedProduct + ' added to cart. \n Thank you! Buy more!!');
+
+  // clear the quantity
+  document.getElementById('quantity').value = '';   
+
+});
+
+document.getElementById('goToCart').addEventListener('click', function(){
+  var strOrder = JSON.stringify(Order.orderArray);
+  localStorage.setItem('order', strOrder);
+
+  location = 'cart.html'; 
+});
 

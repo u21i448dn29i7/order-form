@@ -18,13 +18,14 @@ function Order(name, filePath, quantity) {
       console.log(info);
       var create = new Order(info.name, info.filePath, info.quantity);
       var item = document.createElement('li');
+      localStorage.setItem(create.name, create.quantity);
       item.setAttribute('id',create.name);
       var itemPic = document.createElement('img');
       itemPic.setAttribute('src', create.filePath);
       var btn = document.createElement('button');
       btn.setAttribute('id',create.name);
       btn.textContent = 'Remove Item';
-      btn.addEventListener('click',removeProduct);
+      btn.addEventListener('click', removeProduct);
       item.appendChild(itemPic);
       item.appendChild(document.createTextNode(create.name));
       item.appendChild(document.createTextNode(create.quantity));
@@ -37,7 +38,14 @@ function Order(name, filePath, quantity) {
 })();
 
 function removeProduct(event) {
+  var getData = localStorage.getItem('order');
+  var blob = JSON.parse(getData);
+  console.log(blob);
   var input = event.currentTarget;
   var elem = document.getElementById(input.id);
   elem.remove();
+  var key = localStorage.getItem(input.id);
+  console.log(key);
+  localStorage.removeItem(key);
+
 }

@@ -19,9 +19,6 @@ function Order(name, filePath, quantity) {
   this.quantity = quantity;
   Order.orderArray.push(this);
 }
-
-
-
 function loadCatalog() {
 
   var catalogElement = document.getElementById('catalog');
@@ -45,7 +42,6 @@ function loadCatalog() {
 //   new Order('Banana', 'img/banana.jpg', 1);
 //   new Order('Bathroom', 'img/bathroom.jpg', 1);
 //   new Order('Boots', 'img/boots.jpg', 45);
-
 //   var strOrder = JSON.stringify(Order.orderArray);
 //   localStorage.setItem('order', strOrder);
 // })();

@@ -5,11 +5,11 @@
 }
 
 body {
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 header {
-    background: grey;
+    background: rgb(104,34,31);
     height: 100px;
 }
 
@@ -33,3 +33,48 @@ header ul li {
 main ul li:last-child {
     margin-right: 0px;
 }
+
+ol li {
+    width: 150px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+img {
+    width: 100px;
+}
+
+p {
+    margin-left: 75%;
+}
+
+ol {
+    margin-left: 20px;
+}
+
+button {
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    background-color: rgb(104,34,31);
+    color: white;
+}
+
+button:hover {
+    background-color: hotpink;
+}
+
+#cart-display {
+    overflow: scroll;
+    background: lightgray;
+} 
+
+legend {
+    padding-top: 10px;
+}
+
+#billing {
+    background: rgb(116,45,41);
+    color: hotpink;
+}
+

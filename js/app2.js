@@ -1,7 +1,7 @@
 'use strict';
 
 Order.orderArray = [];
-var cart = document.getElementById('product');
+var cart = document.getElementById('products');
 
 function Order(name, filePath, quantity) {
   this.name = name;

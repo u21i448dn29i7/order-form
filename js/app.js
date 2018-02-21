@@ -3,6 +3,7 @@
 
 Product.allProducts = [];
 Order.orderArray = [];
+var cart = document.getElementById('products');
 
 function Product(name, filePath, id) {
   this.name = name;
@@ -20,6 +21,7 @@ function Order(name, filePath, quantity) {
 }
 
 
+
 function loadCatalog() {
 
   var catalogElement = document.getElementById('catalog');
@@ -32,8 +34,6 @@ function loadCatalog() {
     catalogElement.appendChild(optionElement);
   }
 }
-
-
 // add add to cart listener to get product and qty
 // add all items to <select> element
 
@@ -76,8 +76,6 @@ function loadCatalog() {
   }
 
 })();
-
-
 
 var addToCart = document.getElementById('addToCart');
 addToCart.addEventListener('click', function(){
